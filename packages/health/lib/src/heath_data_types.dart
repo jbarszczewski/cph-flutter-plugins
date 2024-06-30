@@ -1,79 +1,39 @@
 part of '../health.dart';
 
-/// List of all available health data types.
-enum HealthDataType {
-  ACTIVE_ENERGY_BURNED,
-  AUDIOGRAM,
-  BASAL_ENERGY_BURNED,
-  BLOOD_GLUCOSE,
-  BLOOD_OXYGEN,
-  BLOOD_PRESSURE_DIASTOLIC,
-  BLOOD_PRESSURE_SYSTOLIC,
-  BODY_FAT_PERCENTAGE,
-  BODY_MASS_INDEX,
-  BODY_TEMPERATURE,
-  BODY_WATER_MASS,
-  DIETARY_CARBS_CONSUMED,
-  DIETARY_CAFFEINE,
-  DIETARY_ENERGY_CONSUMED,
-  DIETARY_FATS_CONSUMED,
-  DIETARY_PROTEIN_CONSUMED,
-  FORCED_EXPIRATORY_VOLUME,
-  HEART_RATE,
-  HEART_RATE_VARIABILITY_SDNN,
-  HEIGHT,
-  RESTING_HEART_RATE,
-  RESPIRATORY_RATE,
-  PERIPHERAL_PERFUSION_INDEX,
-  STEPS,
-  WAIST_CIRCUMFERENCE,
-  WALKING_HEART_RATE,
-  WEIGHT,
-  DISTANCE_WALKING_RUNNING,
-  DISTANCE_SWIMMING,
-  DISTANCE_CYCLING,
-  FLIGHTS_CLIMBED,
-  MOVE_MINUTES,
-  DISTANCE_DELTA,
-  MINDFULNESS,
-  WATER,
-  SLEEP_IN_BED,
-  SLEEP_ASLEEP,
-  SLEEP_ASLEEP_CORE,
-  SLEEP_ASLEEP_DEEP,
-  SLEEP_ASLEEP_REM,
-  SLEEP_AWAKE,
-  SLEEP_LIGHT,
-  SLEEP_DEEP,
-  SLEEP_REM,
-  SLEEP_OUT_OF_BED,
-  SLEEP_SESSION,
-  EXERCISE_TIME,
-  WORKOUT,
-  HEADACHE_NOT_PRESENT,
-  HEADACHE_MILD,
-  HEADACHE_MODERATE,
-  HEADACHE_SEVERE,
-  HEADACHE_UNSPECIFIED,
-  NUTRITION,
-
-  // Heart Rate events (specific to Apple Watch)
-  HIGH_HEART_RATE_EVENT,
-  LOW_HEART_RATE_EVENT,
-  IRREGULAR_HEART_RATE_EVENT,
-  ELECTRODERMAL_ACTIVITY,
-  ELECTROCARDIOGRAM,
-
-  // Health Connect
-  TOTAL_CALORIES_BURNED
-}
-
-/// Access types for Health Data.
-enum HealthDataAccess {
-  READ,
-  WRITE,
-  READ_WRITE,
-}
+/// List of data types available on Android
+const List<HealthDataType> dataTypeKeysAndroid = [
+  HealthDataType.ACTIVE_ENERGY_BURNED,
+  HealthDataType.BLOOD_GLUCOSE,
+  HealthDataType.BLOOD_OXYGEN,
+  HealthDataType.BLOOD_PRESSURE_DIASTOLIC,
+  HealthDataType.BLOOD_PRESSURE_SYSTOLIC,
+  HealthDataType.BODY_FAT_PERCENTAGE,
+  HealthDataType.BODY_MASS_INDEX,
+  HealthDataType.BODY_TEMPERATURE,
+  HealthDataType.BODY_WATER_MASS,
+  HealthDataType.HEART_RATE,
+  HealthDataType.HEIGHT,
+  HealthDataType.STEPS,
+  HealthDataType.WEIGHT,
+  HealthDataType.MOVE_MINUTES,
+  HealthDataType.DISTANCE_DELTA,
+  HealthDataType.SLEEP_AWAKE,
+  HealthDataType.SLEEP_ASLEEP,
+  HealthDataType.SLEEP_IN_BED,
+  HealthDataType.SLEEP_DEEP,
+  HealthDataType.SLEEP_LIGHT,
+  HealthDataType.SLEEP_REM,
+  HealthDataType.SLEEP_OUT_OF_BED,
+  HealthDataType.SLEEP_SESSION,
+  HealthDataType.WATER,
+  HealthDataType.WORKOUT,
+  HealthDataType.RESTING_HEART_RATE,
+  HealthDataType.FLIGHTS_CLIMBED,
+  HealthDataType.BASAL_ENERGY_BURNED,
+  HealthDataType.RESPIRATORY_RATE,
+  HealthDataType.NUTRITION,
+  HealthDataType.TOTAL_CALORIES_BURNED,
+];
 
 /// List of data types available on iOS.
 const List<HealthDataType> dataTypeKeysIOS = [
@@ -130,41 +90,13 @@ const List<HealthDataType> dataTypeKeysIOS = [
   HealthDataType.HEADACHE_UNSPECIFIED,
   HealthDataType.ELECTROCARDIOGRAM,
   HealthDataType.NUTRITION,
-];
-
-/// List of data types available on Android
-const List<HealthDataType> dataTypeKeysAndroid = [
-  HealthDataType.ACTIVE_ENERGY_BURNED,
-  HealthDataType.BLOOD_GLUCOSE,
-  HealthDataType.BLOOD_OXYGEN,
-  HealthDataType.BLOOD_PRESSURE_DIASTOLIC,
-  HealthDataType.BLOOD_PRESSURE_SYSTOLIC,
-  HealthDataType.BODY_FAT_PERCENTAGE,
-  HealthDataType.BODY_MASS_INDEX,
-  HealthDataType.BODY_TEMPERATURE,
-  HealthDataType.BODY_WATER_MASS,
-  HealthDataType.HEART_RATE,
-  HealthDataType.HEIGHT,
-  HealthDataType.STEPS,
-  HealthDataType.WEIGHT,
-  HealthDataType.MOVE_MINUTES,
-  HealthDataType.DISTANCE_DELTA,
-  HealthDataType.SLEEP_AWAKE,
-  HealthDataType.SLEEP_ASLEEP,
-  HealthDataType.SLEEP_IN_BED,
-  HealthDataType.SLEEP_DEEP,
-  HealthDataType.SLEEP_LIGHT,
-  HealthDataType.SLEEP_REM,
-  HealthDataType.SLEEP_OUT_OF_BED,
-  HealthDataType.SLEEP_SESSION,
-  HealthDataType.WATER,
-  HealthDataType.WORKOUT,
-  HealthDataType.RESTING_HEART_RATE,
-  HealthDataType.FLIGHTS_CLIMBED,
-  HealthDataType.BASAL_ENERGY_BURNED,
-  HealthDataType.RESPIRATORY_RATE,
-  HealthDataType.NUTRITION,
-  HealthDataType.TOTAL_CALORIES_BURNED,
+  // JB: Added
+  HealthDataType.STAIR_ASCENT_SPEED,
+  HealthDataType.STAIR_DESCENT_SPEED,
+  HealthDataType.STAND_TIME,
+  HealthDataType.WALKING_ASYMMETRY_PERCENTAGE,
+  HealthDataType.WALKING_DOUBLE_SUPPORT_PERCENTAGE,
+  HealthDataType.WALKING_SPEED,
 ];
 
 /// Maps a [HealthDataType] to a [HealthDataUnit].
@@ -235,14 +167,117 @@ const Map<HealthDataType, HealthDataUnit> dataTypeToUnit = {
 
   HealthDataType.NUTRITION: HealthDataUnit.NO_UNIT,
 
+  // JB: Added
+  HealthDataType.STAIR_ASCENT_SPEED: HealthDataUnit.METERS_PER_SECOND,
+  HealthDataType.STAIR_DESCENT_SPEED: HealthDataUnit.METERS_PER_SECOND,
+  HealthDataType.STAND_TIME: HealthDataUnit.MINUTE,
+  HealthDataType.WALKING_ASYMMETRY_PERCENTAGE: HealthDataUnit.PERCENT,
+  HealthDataType.WALKING_DOUBLE_SUPPORT_PERCENTAGE: HealthDataUnit.PERCENT,
+  HealthDataType.WALKING_SPEED: HealthDataUnit.METERS_PER_SECOND,
+
   // Health Connect
   HealthDataType.TOTAL_CALORIES_BURNED: HealthDataUnit.KILOCALORIE,
 };
+
+/// Classifications for ECG readings.
+enum ElectrocardiogramClassification {
+  NOT_SET,
+  SINUS_RHYTHM,
+  ATRIAL_FIBRILLATION,
+  INCONCLUSIVE_LOW_HEART_RATE,
+  INCONCLUSIVE_HIGH_HEART_RATE,
+  INCONCLUSIVE_POOR_READING,
+  INCONCLUSIVE_OTHER,
+  UNRECOGNIZED,
+}
+
+/// Access types for Health Data.
+enum HealthDataAccess {
+  READ,
+  WRITE,
+  READ_WRITE,
+}
 
 // const PlatformTypeJsonValue = {
 //   PlatformType.IOS: 'ios',
 //   PlatformType.ANDROID: 'android',
 // };
+
+/// List of all available health data types.
+enum HealthDataType {
+  ACTIVE_ENERGY_BURNED,
+  AUDIOGRAM,
+  BASAL_ENERGY_BURNED,
+  BLOOD_GLUCOSE,
+  BLOOD_OXYGEN,
+  BLOOD_PRESSURE_DIASTOLIC,
+  BLOOD_PRESSURE_SYSTOLIC,
+  BODY_FAT_PERCENTAGE,
+  BODY_MASS_INDEX,
+  BODY_TEMPERATURE,
+  BODY_WATER_MASS,
+  DIETARY_CARBS_CONSUMED,
+  DIETARY_CAFFEINE,
+  DIETARY_ENERGY_CONSUMED,
+  DIETARY_FATS_CONSUMED,
+  DIETARY_PROTEIN_CONSUMED,
+  FORCED_EXPIRATORY_VOLUME,
+  HEART_RATE,
+  HEART_RATE_VARIABILITY_SDNN,
+  HEIGHT,
+  RESTING_HEART_RATE,
+  RESPIRATORY_RATE,
+  PERIPHERAL_PERFUSION_INDEX,
+  STEPS,
+  WAIST_CIRCUMFERENCE,
+  WALKING_HEART_RATE,
+  WEIGHT,
+  DISTANCE_WALKING_RUNNING,
+  DISTANCE_SWIMMING,
+  DISTANCE_CYCLING,
+  FLIGHTS_CLIMBED,
+  MOVE_MINUTES,
+  DISTANCE_DELTA,
+  MINDFULNESS,
+  WATER,
+  SLEEP_IN_BED,
+  SLEEP_ASLEEP,
+  SLEEP_ASLEEP_CORE,
+  SLEEP_ASLEEP_DEEP,
+  SLEEP_ASLEEP_REM,
+  SLEEP_AWAKE,
+  SLEEP_LIGHT,
+  SLEEP_DEEP,
+  SLEEP_REM,
+  SLEEP_OUT_OF_BED,
+  SLEEP_SESSION,
+  EXERCISE_TIME,
+  WORKOUT,
+  HEADACHE_NOT_PRESENT,
+  HEADACHE_MILD,
+  HEADACHE_MODERATE,
+  HEADACHE_SEVERE,
+  HEADACHE_UNSPECIFIED,
+  NUTRITION,
+
+  // JB: added
+  STAIR_ASCENT_SPEED,
+  STAIR_DESCENT_SPEED,
+  STAND_TIME,
+  WALKING_ASYMMETRY_PERCENTAGE,
+  WALKING_DOUBLE_SUPPORT_PERCENTAGE,
+  WALKING_SPEED,
+
+  // Heart Rate events (specific to Apple Watch)
+  HIGH_HEART_RATE_EVENT,
+  LOW_HEART_RATE_EVENT,
+  IRREGULAR_HEART_RATE_EVENT,
+  ELECTRODERMAL_ACTIVITY,
+  ELECTROCARDIOGRAM,
+
+  // Health Connect
+  TOTAL_CALORIES_BURNED
+}
 
 /// List of all [HealthDataUnit]s.
 enum HealthDataUnit {
@@ -323,6 +358,9 @@ enum HealthDataUnit {
   MILLIGRAM_PER_DECILITER,
   UNKNOWN_UNIT,
   NO_UNIT,
+
+  // JB: ADDED
+  METERS_PER_SECOND,
 }
 
 /// List of [HealthWorkoutActivityType]s.
@@ -491,18 +529,6 @@ enum MealType {
   DINNER,
   SNACK,
   UNKNOWN,
-}
-
-/// Classifications for ECG readings.
-enum ElectrocardiogramClassification {
-  NOT_SET,
-  SINUS_RHYTHM,
-  ATRIAL_FIBRILLATION,
-  INCONCLUSIVE_LOW_HEART_RATE,
-  INCONCLUSIVE_HIGH_HEART_RATE,
-  INCONCLUSIVE_POOR_READING,
-  INCONCLUSIVE_OTHER,
-  UNRECOGNIZED,
 }
 
 /// Extension to assign numbers to [ElectrocardiogramClassification]s

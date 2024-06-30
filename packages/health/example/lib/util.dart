@@ -1,5 +1,41 @@
 import 'package:health/health.dart';
 
+/// List of data types available on Android.
+///
+/// Note that these are only the ones supported on Android's Health Connect API.
+/// Android's Google Fit have more types that we support in the [HealthDataType]
+/// enumeration.
+const List<HealthDataType> dataTypesAndroid = [
+  HealthDataType.ACTIVE_ENERGY_BURNED,
+  HealthDataType.BASAL_ENERGY_BURNED,
+  HealthDataType.BLOOD_GLUCOSE,
+  HealthDataType.BLOOD_OXYGEN,
+  HealthDataType.BLOOD_PRESSURE_DIASTOLIC,
+  HealthDataType.BLOOD_PRESSURE_SYSTOLIC,
+  HealthDataType.BODY_FAT_PERCENTAGE,
+  HealthDataType.HEIGHT,
+  HealthDataType.WEIGHT,
+  // HealthDataType.BODY_MASS_INDEX,
+  HealthDataType.BODY_TEMPERATURE,
+  HealthDataType.HEART_RATE,
+  HealthDataType.STEPS,
+  // HealthDataType.MOVE_MINUTES, // TODO: Find alternative for Health Connect
+  HealthDataType.DISTANCE_DELTA,
+  HealthDataType.RESPIRATORY_RATE,
+  HealthDataType.SLEEP_AWAKE,
+  HealthDataType.SLEEP_ASLEEP,
+  HealthDataType.SLEEP_LIGHT,
+  HealthDataType.SLEEP_DEEP,
+  HealthDataType.SLEEP_REM,
+  HealthDataType.SLEEP_SESSION,
+  HealthDataType.WATER,
+  HealthDataType.WORKOUT,
+  HealthDataType.RESTING_HEART_RATE,
+  HealthDataType.FLIGHTS_CLIMBED,
+  HealthDataType.NUTRITION,
+  HealthDataType.TOTAL_CALORIES_BURNED,
+];
+
 /// List of data types available on iOS
 const List<HealthDataType> dataTypesIOS = [
   HealthDataType.ACTIVE_ENERGY_BURNED,
@@ -53,40 +89,12 @@ const List<HealthDataType> dataTypesIOS = [
   HealthDataType.WALKING_HEART_RATE,
 
   HealthDataType.NUTRITION,
-];
 
-/// List of data types available on Android.
-///
-/// Note that these are only the ones supported on Android's Health Connect API.
-/// Android's Google Fit have more types that we support in the [HealthDataType]
-/// enumeration.
-const List<HealthDataType> dataTypesAndroid = [
-  HealthDataType.ACTIVE_ENERGY_BURNED,
-  HealthDataType.BASAL_ENERGY_BURNED,
-  HealthDataType.BLOOD_GLUCOSE,
-  HealthDataType.BLOOD_OXYGEN,
-  HealthDataType.BLOOD_PRESSURE_DIASTOLIC,
-  HealthDataType.BLOOD_PRESSURE_SYSTOLIC,
-  HealthDataType.BODY_FAT_PERCENTAGE,
-  HealthDataType.HEIGHT,
-  HealthDataType.WEIGHT,
-  // HealthDataType.BODY_MASS_INDEX,
-  HealthDataType.BODY_TEMPERATURE,
-  HealthDataType.HEART_RATE,
-  HealthDataType.STEPS,
-  // HealthDataType.MOVE_MINUTES, // TODO: Find alternative for Health Connect
-  HealthDataType.DISTANCE_DELTA,
-  HealthDataType.RESPIRATORY_RATE,
-  HealthDataType.SLEEP_AWAKE,
-  HealthDataType.SLEEP_ASLEEP,
-  HealthDataType.SLEEP_LIGHT,
-  HealthDataType.SLEEP_DEEP,
-  HealthDataType.SLEEP_REM,
-  HealthDataType.SLEEP_SESSION,
-  HealthDataType.WATER,
-  HealthDataType.WORKOUT,
-  HealthDataType.RESTING_HEART_RATE,
-  HealthDataType.FLIGHTS_CLIMBED,
-  HealthDataType.NUTRITION,
-  HealthDataType.TOTAL_CALORIES_BURNED,
+  // JB: Added
+  HealthDataType.STAIR_ASCENT_SPEED,
+  HealthDataType.STAIR_DESCENT_SPEED,
+  HealthDataType.STAND_TIME,
+  HealthDataType.WALKING_ASYMMETRY_PERCENTAGE,
+  HealthDataType.WALKING_DOUBLE_SUPPORT_PERCENTAGE,
+  HealthDataType.WALKING_SPEED,
 ];
