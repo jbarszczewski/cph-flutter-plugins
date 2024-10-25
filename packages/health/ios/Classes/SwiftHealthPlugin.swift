@@ -162,6 +162,13 @@ public class SwiftHealthPlugin: NSObject, FlutterPlugin {
     let BLOOD_TYPE = "BLOOD_TYPE"
     let MENSTRUATION_FLOW = "MENSTRUATION_FLOW"
     
+    // MOBILITY: JB added
+    let STAIR_ASCENT_SPEED = "STAIR_ASCENT_SPEED"
+    let STAIR_DESCENT_SPEED = "STAIR_DESCENT_SPEED"
+    let STAND_TIME = "STAND_TIME"
+    let WALKING_ASYMMETRY_PERCENTAGE = "WALKING_ASYMMETRY_PERCENTAGE"
+    let WALKING_DOUBLE_SUPPORT_PERCENTAGE = "WALKING_DOUBLE_SUPPORT_PERCENTAGE"
+    let WALKING_SPEED = "WALKING_SPEED"
     
     // Health Unit types
     // MOLE_UNIT_WITH_MOLAR_MASS, // requires molar mass input - not supported yet
@@ -214,6 +221,8 @@ public class SwiftHealthPlugin: NSObject, FlutterPlugin {
     let MILLIGRAM_PER_DECILITER = "MILLIGRAM_PER_DECILITER"
     let UNKNOWN_UNIT = "UNKNOWN_UNIT"
     let NO_UNIT = "NO_UNIT"
+    // MOBILITY: JB ADDED
+    let METERS_PER_SECOND = "METERS_PER_SECOND"
     
     struct PluginError: Error {
         let message: String
@@ -1298,6 +1307,9 @@ public class SwiftHealthPlugin: NSObject, FlutterPlugin {
         unitDict[MILLIGRAM_PER_DECILITER] = HKUnit.init(from: "mg/dL")
         unitDict[UNKNOWN_UNIT] = HKUnit.init(from: "")
         unitDict[NO_UNIT] = HKUnit.init(from: "")
+
+        // MOBILITY: JB added
+        unitDict[METERS_PER_SECOND] = HKUnit.meter().unitDivided(by: HKUnit.second())
         
         // Initialize workout types
         workoutActivityTypeMap["ARCHERY"] = .archery
@@ -1489,6 +1501,9 @@ public class SwiftHealthPlugin: NSObject, FlutterPlugin {
             dataTypesDict[WORKOUT] = HKSampleType.workoutType()
             dataTypesDict[NUTRITION] = HKSampleType.correlationType(
                 forIdentifier: .food)!
+
+            // MOBILITY: JB added
+            dataTypesDict[STAND_TIME] = HKQuantityType.quantityType(forIdentifier: .appleStandTime)!
             
             healthDataTypes = Array(dataTypesDict.values)
             
@@ -1600,6 +1615,13 @@ public class SwiftHealthPlugin: NSObject, FlutterPlugin {
         if #available(iOS 14.0, *) {
             dataTypesDict[ELECTROCARDIOGRAM] = HKSampleType.electrocardiogramType()
             
+            // MOBILITY: JB added
+            dataTypesDict[STAIR_ASCENT_SPEED] = HKQuantityType.quantityType(forIdentifier: .stairAscentSpeed)!
+            dataTypesDict[STAIR_DESCENT_SPEED] = HKQuantityType.quantityType(forIdentifier: .stairDescentSpeed)!
+            dataTypesDict[WALKING_SPEED] = HKQuantityType.quantityType(forIdentifier: .walkingSpeed)!
+            dataTypesDict[WALKING_ASYMMETRY_PERCENTAGE] = HKQuantityType.quantityType(forIdentifier: .walkingAsymmetryPercentage)!
+            dataTypesDict[WALKING_DOUBLE_SUPPORT_PERCENTAGE] = HKQuantityType.quantityType(forIdentifier: .walkingDoubleSupportPercentage)!
+
             unitDict[VOLT] = HKUnit.volt()
             unitDict[INCHES_OF_MERCURY] = HKUnit.inchesOfMercury()
             

@@ -148,7 +148,7 @@ class _HealthAppState extends State<HealthApp> {
     final yesterday = now.subtract(const Duration(hours: 24));
 
     // Clear old data points
-    _healthDataList.clear();
+  _healthDataList.clear();
 
     try {
       // fetch health data
